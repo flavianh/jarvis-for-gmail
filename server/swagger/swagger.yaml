@@ -1,0 +1,12 @@
+---
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Gmail API
+paths:
+  /:
+    get:
+      operationId: app.api.hello_world
+      responses:
+        200:
+          description: OK

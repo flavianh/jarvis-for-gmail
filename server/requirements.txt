@@ -1,0 +1,2 @@
+connexion==1.0.103
+swagger-tester==0.2.6
