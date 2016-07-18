@@ -4,9 +4,55 @@ info:
   version: 0.0.1
   title: Gmail API
 paths:
-  /:
+  /logs:
     get:
-      operationId: app.api.hello_world
+      operationId: app.api.logs_get
+      parameters:
+        - name: created_at_from
+          in: query
+          description: Datetime from which logs were created, in RFC3339 format.
+          type: string
+        - name: created_at_to
+          in: query
+          description: Datetime until which logs were created, in RFC3339 format.
+          type: string
       responses:
         200:
           description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Log'
+    post:
+      operationId: app.api.logs_post
+      parameters:
+        - name: log
+          in: body
+          description: Log to add
+          schema:
+            $ref: '#/definitions/Log'
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Log'
+
+definitions:
+  Log:
+    type: object
+    properties:
+      id:
+        type: integer
+      created_at:
+        type: string
+      email_id:
+        type: string
+      email_object:
+        type: string
+      email_senders:
+        type: string
+      action:
+        type: string
